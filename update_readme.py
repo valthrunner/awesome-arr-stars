@@ -9,34 +9,38 @@ ORIGINAL_REPO_README_URL = "https://raw.githubusercontent.com/Ravencentric/aweso
 LOCAL_README_PATH = "README.md"
 
 def fetch_readme(url):
-    """Fetch the content of the README.md file from the original repository."""
     response = requests.get(url)
     response.raise_for_status()
     return response.text
 
 def extract_github_links(readme_content):
-    """Extract all GitHub links from the README.md content."""
     pattern = r'\[.*?\]\((https://github\.com/[\w\-/]+)\)'
     return re.findall(pattern, readme_content)
 
 def get_star_count(repo_url):
-    """Fetch star count for a GitHub repository using the API."""
     repo_path = repo_url.replace("https://github.com/", "")
     api_url = f"https://api.github.com/repos/{repo_path}"
-    response = requests.get(api_url, headers=HEADERS)
-    response.raise_for_status()
-    data = response.json()
-    return data.get("stargazers_count", 0)
+    try:
+        response = requests.get(api_url, headers=HEADERS)
+        response.raise_for_status()
+        data = response.json()
+        return data.get("stargazers_count", 0)
+    except requests.exceptions.HTTPError as e:
+        if response.status_code == 404:
+            print(f"Repository not found for {repo_url}. Skipping...")
+            return None
+        else:
+            raise e  
 
 def update_readme_with_stars(readme_content, links):
-    """Update README.md content to include star counts."""
     updated_content = readme_content
     for link in links:
         star_count = get_star_count(link)
+        if star_count is not None:
 
-        pattern = r'(\[.*?\]\({}\))'.format(re.escape(link))
-        replacement = r"\1 {} ⭐".format(star_count)
-        updated_content = re.sub(pattern, replacement, updated_content)
+            pattern = r'(\[.*?\]\({}\))'.format(re.escape(link))
+            replacement = r"\1 {} ⭐".format(star_count)
+            updated_content = re.sub(pattern, replacement, updated_content)
     return updated_content
 
 def main():
