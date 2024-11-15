@@ -30,28 +30,23 @@ def get_star_count(repo_url):
             print(f"Repository not found for {repo_url}. Skipping...")
             return None
         else:
-            raise e  
+            raise e
 
 def update_readme_with_stars(readme_content, links):
     updated_content = readme_content
     for link in links:
         star_count = get_star_count(link)
         if star_count is not None:
-
             pattern = r'(\[.*?\]\({}\))'.format(re.escape(link))
             replacement = r"\1 {} ⭐".format(star_count)
             updated_content = re.sub(pattern, replacement, updated_content)
     return updated_content
 
 def main():
-
     readme_content = fetch_readme(ORIGINAL_REPO_README_URL)
-
     github_links = extract_github_links(readme_content)
     print(f"Found {len(github_links)} GitHub links.")
-
     updated_readme = update_readme_with_stars(readme_content, github_links)
-
     with open(LOCAL_README_PATH, "w", encoding="utf-8") as file:
         file.write(updated_readme)
     print("README.md updated with star counts.")
