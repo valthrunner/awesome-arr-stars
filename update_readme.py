@@ -27,12 +27,13 @@ def fetch_latest_readme():
 def format_star_count(count):
     if count >= 1000:
         formatted_count = f"{count:,}"
+        return f"**{formatted_count}** ⭐⭐⭐"
+    elif count >= 200:
+        formatted_count = f"{count:,}"
+        return f"**{formatted_count}** ⭐⭐"
     else:
         formatted_count = str(count)
-    
-    if count >= 200:
-        return f"**{formatted_count}** ⭐"
-    return f"{formatted_count} ⭐"
+        return f"{formatted_count} ⭐"
 
 def get_star_count(repo_url):
     match = re.match(r'https://github.com/([^/]+)/([^/]+)', repo_url)
