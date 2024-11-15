@@ -22,15 +22,15 @@ def get_star_count(repo_url):
     api_url = f"https://api.github.com/repos/{repo_path}"
     try:
         response = requests.get(api_url, headers=HEADERS)
-        response.raise_for_status()
-        data = response.json()
-        return data.get("stargazers_count", 0)
-    except requests.exceptions.HTTPError as e:
         if response.status_code == 404:
             print(f"Repository not found for {repo_url}. Skipping...")
             return None
-        else:
-            raise e
+        response.raise_for_status()
+        data = response.json()
+        return data.get("stargazers_count", 0)
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching star count for {repo_url}: {e}")
+        return None
 
 def update_readme_with_stars(readme_content, links):
     updated_content = readme_content
