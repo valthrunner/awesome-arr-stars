@@ -29,11 +29,10 @@ jobs:
     - name: Check for Changes
       id: check-for-changes
       run: |
-        if [[ -n $(git status --porcelain) ]]; then
-          echo "::set-output name=changes::true"
-          git restore .
-        else
+        if git diff --quiet README.md; then
           echo "::set-output name=changes::false"
+        else
+          echo "::set-output name=changes::true"
         fi
         
     - name: Commit and Push Changes
