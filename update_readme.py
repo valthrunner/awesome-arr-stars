@@ -47,15 +47,15 @@ def get_star_count(repo_url):
 def update_readme_with_stars(readme_content, repo_urls):
     updated_lines = []
     for line in readme_content.splitlines():
-        match = re.search(r'\((https://github.com/[^)]+)\)', line)
-        if match:
-            repo_url = match.group(1)
-            star_count = get_star_count(repo_url)
-            if star_count is not None:
-                line = f"{line} ({star_count} ⭐)"
-            else:
-                line = line
-        updated_lines.append(line)
+        updated_line = line
+        for repo_url in repo_urls:
+            match = re.search(r'\(' + re.escape(repo_url) + r'\)', line)
+            if match:
+                star_count = get_star_count(repo_url)
+                if star_count is not None:
+                    updated_line = f"{line.replace(f'({repo_url})', f'({repo_url}) ({star_count} ⭐)')}"
+                    break
+        updated_lines.append(updated_line)
     return '\n'.join(updated_lines)
 
 def main():
