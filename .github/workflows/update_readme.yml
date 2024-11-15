@@ -25,7 +25,18 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: python update_readme.py
 
+      - name: Check for Changes
+        run: |
+          if [[ -n $(git status --porcelain) ]]; then
+            echo "Changes detected"
+            echo "## Changes Detected" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No changes to commit."
+            echo "## No Changes to Commit" >> $GITHUB_STEP_SUMMARY
+            exit 0
+          
       - name: Commit and Push Changes
+        if: success() && steps.check-for-changes.outputs.changes == 'true'
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
