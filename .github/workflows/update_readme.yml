@@ -10,38 +10,38 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-      
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
+      - name: Checkout Repository
+        uses: actions/checkout@v3
         
-    - name: Install Dependencies
-      run: pip install requests
-        
-    - name: Update README
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: python update_readme.py
-        
-    - name: Check for Changes
-      id: check-for-changes
-      run: |
-        if git diff --quiet README.md; then
-          echo "::set-output name=changes::false"
-        else
-          echo "::set-output name=changes::true"
-        fi
-        
-    - name: Commit and Push Changes
-      if: steps.check-for-changes.outputs.changes == 'true'
-      run: |
-        git config --global user.name 'GitHub Actions'
-        git config --global user.email 'actions@github.com'
-        git add README.md
-        git commit -m 'Update README with latest star counts'
-        git push
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+          
+      - name: Install Dependencies
+        run: pip install requests
+          
+      - name: Update README
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: python update_readme.py
+          
+      - name: Check for Changes
+        id: check-changes
+        run: |
+          if git diff --quiet README.md; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Commit and Push Changes
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add README.md
+          git commit -m 'Update README with latest star counts'
+          git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
