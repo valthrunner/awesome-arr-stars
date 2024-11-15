@@ -24,6 +24,16 @@ def fetch_latest_readme():
                 file.write("# README\n\nThis README was created automatically.\n")
         return os.path.exists(LOCAL_README_PATH)
 
+def format_star_count(count):
+    if count >= 1000:
+        formatted_count = f"{count:,}"
+    else:
+        formatted_count = str(count)
+    
+    if count >= 200:
+        return f"**{formatted_count}** ⭐"
+    return f"{formatted_count} ⭐"
+
 def get_star_count(repo_url):
     match = re.match(r'https://github.com/([^/]+)/([^/]+)', repo_url)
     if not match:
@@ -62,7 +72,7 @@ def update_readme_with_stars(readme_content, repo_urls):
                 if star_count is not None:
                     description_match = re.search(r' - (.*)$', line)
                     description = f" - {description_match.group(1)}" if description_match else ""
-                    updated_line = f"- [{link_text}]({repo_url}) ({star_count} ⭐){description}"
+                    updated_line = f"- [{link_text}]({repo_url}) {format_star_count(star_count)}{description}"
                     break
         updated_lines.append(updated_line)
     
