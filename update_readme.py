@@ -28,10 +28,8 @@ def get_star_count(repo_url):
     if not match:
         print(f"Invalid URL format: {repo_url}")
         return None
-
     owner, repo = match.groups()
     api_url = f'https://api.github.com/repos/{owner}/{repo}'
-
     try:
         response = requests.get(api_url, headers=HEADERS)
         if response.status_code == 404:
@@ -49,12 +47,14 @@ def update_readme_with_stars(readme_content, repo_urls):
     for line in readme_content.splitlines():
         updated_line = line
         for repo_url in repo_urls:
-            match = re.search(r'\[(.*?)\]\(' + re.escape(repo_url) + r'\)', line)
+            match = re.search(r'- \[(.*?)\]\(' + re.escape(repo_url) + r'\)(?: \(\d+ ⭐\))?(?: - .*)?$', line)
             if match:
                 link_text = match.group(1)
                 star_count = get_star_count(repo_url)
                 if star_count is not None:
-                    updated_line = f"[{link_text}]({repo_url}) ({star_count} ⭐)"
+                    description_match = re.search(r' - (.*)$', line)
+                    description = f" - {description_match.group(1)}" if description_match else ""
+                    updated_line = f"- [{link_text}]({repo_url}) ({star_count} ⭐){description}"
                     break
         updated_lines.append(updated_line)
     return '\n'.join(updated_lines)
@@ -63,17 +63,18 @@ def main():
     if not fetch_latest_readme():
         print("README.md could not be fetched or created. Exiting.")
         return
-
+    
     with open(LOCAL_README_PATH, 'r', encoding='utf-8') as file:
         readme_content = file.read()
-
+    
     repo_urls = re.findall(r'https://github.com/[^)]+', readme_content)
     print(f"Found {len(repo_urls)} GitHub links.")
-
+    
     updated_readme = update_readme_with_stars(readme_content, repo_urls)
-
+    
     with open(LOCAL_README_PATH, 'w', encoding='utf-8') as file:
         file.write(updated_readme)
+    
     print("README.md has been updated with star counts.")
 
 if __name__ == '__main__':
