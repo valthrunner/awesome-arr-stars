@@ -6,6 +6,7 @@ GITHUB_TOKEN = os.getenv("GH_TOKEN")
 HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
 ORIGINAL_REPO_README_URL = "https://raw.githubusercontent.com/Ravencentric/awesome-arr/main/README.md"
 LOCAL_README_PATH = "README.md"
+GITHUB_ACTIONS_BADGE = "[![Update README with Star Counts](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml/badge.svg)](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml)\n\n"
 
 def fetch_latest_readme():
     try:
@@ -43,8 +44,15 @@ def get_star_count(repo_url):
         return None
 
 def update_readme_with_stars(readme_content, repo_urls):
+    lines = readme_content.splitlines()
+    
+    for i, line in enumerate(lines):
+        if line.startswith('# Awesome *Arr'):
+            lines[i] = '# Awesome *Arr with ⭐s [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)'
+            break
+    
     updated_lines = []
-    for line in readme_content.splitlines():
+    for line in lines:
         updated_line = line
         for repo_url in repo_urls:
             match = re.search(r'- \[(.*?)\]\(' + re.escape(repo_url) + r'\)(?: \(\d+ ⭐\))?(?: - .*)?$', line)
@@ -57,7 +65,8 @@ def update_readme_with_stars(readme_content, repo_urls):
                     updated_line = f"- [{link_text}]({repo_url}) ({star_count} ⭐){description}"
                     break
         updated_lines.append(updated_line)
-    return '\n'.join(updated_lines)
+    
+    return GITHUB_ACTIONS_BADGE + '\n'.join(updated_lines)
 
 def main():
     if not fetch_latest_readme():
