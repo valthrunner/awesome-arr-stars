@@ -53,6 +53,8 @@ def update_readme_with_stars(readme_content, repo_urls):
             star_count = get_star_count(repo_url)
             if star_count is not None:
                 line = f"{line} ({star_count} ⭐)"
+            else:
+                line = line
         updated_lines.append(line)
     return '\n'.join(updated_lines)
 
