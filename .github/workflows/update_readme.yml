@@ -1,16 +1,15 @@
-name: Update README Star Counts
+name: Update README with Star Counts
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
-  workflow_dispatch:  # Allows you to manually trigger the workflow
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out the repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -18,20 +17,20 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pip install requests
 
-      - name: Update README with Star Counts
+      - name: Update README
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: python update_readme.py
 
-      - name: Commit and push changes
+      - name: Commit and Push Changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
           git add README.md
-          git commit -m "Update star counts in README"
+          git commit -m 'Update README with latest star counts'
           git push
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
