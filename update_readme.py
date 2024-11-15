@@ -49,11 +49,11 @@ def update_readme_with_stars(readme_content, repo_urls):
     for line in readme_content.splitlines():
         updated_line = line
         for repo_url in repo_urls:
-            match = re.search(r'\(' + re.escape(repo_url) + r'\)', line)
+            match = re.search(r'\(.*?' + re.escape(repo_url) + r'.*?\)', line)
             if match:
                 star_count = get_star_count(repo_url)
                 if star_count is not None:
-                    updated_line = f"{line.replace(f'({repo_url})', f'({repo_url}) ({star_count} ⭐)')}"
+                    updated_line = line.replace(match.group(), f"({match.group().split('(')[1].split(')')[0]} {star_count} ⭐)")
                     break
         updated_lines.append(updated_line)
     return '\n'.join(updated_lines)
