@@ -4,6 +4,22 @@ import os
 
 GITHUB_TOKEN = os.getenv("GH_TOKEN")
 HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
+ORIGINAL_REPO_README_URL = "https://raw.githubusercontent.com/Ravencentric/awesome-arr/main/README.md"
+LOCAL_README_PATH = "README.md"
+
+def fetch_latest_readme():
+    try:
+        response = requests.get(ORIGINAL_REPO_README_URL)
+        response.raise_for_status()
+        with open(LOCAL_README_PATH, "w", encoding="utf-8") as file:
+            file.write(response.text)
+        print("Fetched the latest README from the original repository.")
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching the original README: {e}")
+        if not os.path.exists(LOCAL_README_PATH):
+            print("Creating an empty README.md as fallback.")
+            with open(LOCAL_README_PATH, "w", encoding="utf-8") as file:
+                file.write("# README\n\nThis README was created automatically.\n")
 
 def get_star_count(repo_url):
     match = re.match(r'https://github.com/([^/]+)/([^/]+)', repo_url)
@@ -40,7 +56,8 @@ def update_readme_with_stars(readme_content, repo_urls):
     return '\n'.join(updated_lines)
 
 def main():
-    with open('README.md', 'r', encoding='utf-8') as file:
+    fetch_latest_readme()
+    with open(LOCAL_README_PATH, 'r', encoding='utf-8') as file:
         readme_content = file.read()
 
     repo_urls = re.findall(r'https://github.com/[^)]+', readme_content)
@@ -48,7 +65,7 @@ def main():
 
     updated_readme = update_readme_with_stars(readme_content, repo_urls)
 
-    with open('README.md', 'w', encoding='utf-8') as file:
+    with open(LOCAL_README_PATH, 'w', encoding='utf-8') as file:
         file.write(updated_readme)
     print("README.md has been updated with star counts.")
 
