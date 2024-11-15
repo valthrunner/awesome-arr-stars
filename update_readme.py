@@ -57,6 +57,10 @@ def update_readme_with_stars(readme_content, repo_urls):
 
 def main():
     fetch_latest_readme()
+    if not os.path.exists(LOCAL_README_PATH):
+        print("README.md file still missing after fetch/create attempts.")
+        return
+
     with open(LOCAL_README_PATH, 'r', encoding='utf-8') as file:
         readme_content = file.read()
 
