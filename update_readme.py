@@ -6,7 +6,7 @@ GITHUB_TOKEN = os.getenv("GH_TOKEN")
 HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
 ORIGINAL_REPO_README_URL = "https://raw.githubusercontent.com/Ravencentric/awesome-arr/main/README.md"
 LOCAL_README_PATH = "README.md"
-GITHUB_ACTIONS_BADGE = "[![Update README with Star Counts](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml/badge.svg)](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml)\n\n"
+GITHUB_ACTIONS_BADGE = "[![Stars Update Action](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml/badge.svg)](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml)\n\n"
 
 def fetch_latest_readme():
     try:
