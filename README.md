@@ -70,7 +70,7 @@
 - [Excludarr](https://github.com/haijeploeg/excludarr) (204 ⭐) - Excludarr is a CLI that interacts with Radarr and Sonarr instances. It completely manages you library in Sonarr and Radarr to only consist out of movies and series that are not present on any of the configured streaming providers.
 - [Exportarr](https://github.com/onedr0p/exportarr) (572 ⭐) - This will export metrics gathered from Sonarr, Radarr, Lidarr, or Prowlarr.
 - [Ezarr](https://github.com/Luctia/ezarr) (721 ⭐) - Ezarr aims to make it as easy as possible to setup an entire Servarr/Jackett/BitTorrent/PleX/Jellyfin mediacenter stack using Docker.
-- [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) (7822 ⭐) - Proxy server to bypass Cloudflare protection.
+- [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) (7823 ⭐) - Proxy server to bypass Cloudflare protection.
 - [Flemmarr](https://github.com/Flemmarr/Flemmarr) (279 ⭐) - Flemmarr makes it easy to automate configuration for your -arr apps.
 - [Gclone](https://github.com/l3v11/gclone) (142 ⭐) - A rclone mod with auto SA rotation.
 - [hrenard/Cleanarr](https://github.com/hrenard/cleanarr/) (23 ⭐) - A small utility tasked to automatically clean radarr and sonarr files over time.
@@ -126,7 +126,7 @@
 
 - [Dashy](https://github.com/Lissy93/dashy) (18015 ⭐) - A self-hostable personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more.
 - [Flame](https://github.com/pawelmalak/flame) (5311 ⭐) - Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.
-- [Heimdall](https://github.com/linuxserver/Heimdall) (7874 ⭐) - An Application dashboard and launcher.
+- [Heimdall](https://github.com/linuxserver/Heimdall) (7875 ⭐) - An Application dashboard and launcher.
 - [Homarr](https://github.com/ajnart/homarr) (6210 ⭐) - Customizable browser's home page to interact with your homeserver's Docker containers.
 - [Homepage](https://github.com/benphelps/homepage) (19620 ⭐) - A highly customizable homepage (or startpage / application dashboard) with Docker and service API integration.
 - [Homer](https://github.com/bastienwirtz/homer) (9321 ⭐) - A very simple static homepage for your server with offline health check.
