@@ -3,53 +3,54 @@ import requests
 import os
 
 GITHUB_TOKEN = os.getenv("GH_TOKEN")
-HEADERS = {"Authorization": f"token {GITHUB_TOKEN}"}
-
-ORIGINAL_REPO_README_URL = "https://raw.githubusercontent.com/Ravencentric/awesome-arr/main/README.md"
-LOCAL_README_PATH = "README.md"
-
-def fetch_readme(url):
-    response = requests.get(url)
-    response.raise_for_status()
-    return response.text
-
-def extract_github_links(readme_content):
-    pattern = r'\[.*?\]\((https://github\.com/[\w\-/]+)\)'
-    return re.findall(pattern, readme_content)
+HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
 
 def get_star_count(repo_url):
-    repo_path = repo_url.replace("https://github.com/", "")
-    api_url = f"https://api.github.com/repos/{repo_path}"
+    match = re.match(r'https://github.com/([^/]+)/([^/]+)', repo_url)
+    if not match:
+        print(f"Invalid URL format: {repo_url}")
+        return None
+
+    owner, repo = match.groups()
+    api_url = f'https://api.github.com/repos/{owner}/{repo}'
+
     try:
         response = requests.get(api_url, headers=HEADERS)
         if response.status_code == 404:
-            print(f"Repository not found for {repo_url}. Skipping...")
+            print(f"Repository not found: {repo_url}")
             return None
         response.raise_for_status()
-        data = response.json()
-        return data.get("stargazers_count", 0)
+        repo_data = response.json()
+        return repo_data.get('stargazers_count', 0)
     except requests.exceptions.RequestException as e:
         print(f"Error fetching star count for {repo_url}: {e}")
         return None
 
-def update_readme_with_stars(readme_content, links):
-    updated_content = readme_content
-    for link in links:
-        star_count = get_star_count(link)
-        if star_count is not None:
-            pattern = r'(\[.*?\]\({}\))'.format(re.escape(link))
-            replacement = r"\1 {} ⭐".format(star_count)
-            updated_content = re.sub(pattern, replacement, updated_content)
-    return updated_content
+def update_readme_with_stars(readme_content, repo_urls):
+    updated_lines = []
+    for line in readme_content.splitlines():
+        match = re.search(r'\((https://github.com/[^)]+)\)', line)
+        if match:
+            repo_url = match.group(1)
+            if repo_url in repo_urls:
+                star_count = get_star_count(repo_url)
+                if star_count is not None:
+                    line = re.sub(r'\(\d+ ⭐\)', f'({star_count} ⭐)', line)
+        updated_lines.append(line)
+    return '\n'.join(updated_lines)
 
 def main():
-    readme_content = fetch_readme(ORIGINAL_REPO_README_URL)
-    github_links = extract_github_links(readme_content)
-    print(f"Found {len(github_links)} GitHub links.")
-    updated_readme = update_readme_with_stars(readme_content, github_links)
-    with open(LOCAL_README_PATH, "w", encoding="utf-8") as file:
-        file.write(updated_readme)
-    print("README.md updated with star counts.")
+    with open('README.md', 'r', encoding='utf-8') as file:
+        readme_content = file.read()
 
-if __name__ == "__main__":
+    repo_urls = re.findall(r'https://github.com/[^)]+', readme_content)
+    print(f"Found {len(repo_urls)} GitHub links.")
+
+    updated_readme = update_readme_with_stars(readme_content, repo_urls)
+
+    with open('README.md', 'w', encoding='utf-8') as file:
+        file.write(updated_readme)
+    print("README.md has been updated with star counts.")
+
+if __name__ == '__main__':
     main()
