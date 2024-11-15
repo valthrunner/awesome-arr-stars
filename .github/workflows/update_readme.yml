@@ -1,4 +1,4 @@
-name: Update README with Star Counts
+name: Star Update Action
 
 on:
   schedule:
