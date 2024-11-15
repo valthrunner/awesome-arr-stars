@@ -14,12 +14,14 @@ def fetch_latest_readme():
         with open(LOCAL_README_PATH, "w", encoding="utf-8") as file:
             file.write(response.text)
         print("Fetched the latest README from the original repository.")
+        return True
     except requests.exceptions.RequestException as e:
         print(f"Error fetching the original README: {e}")
         if not os.path.exists(LOCAL_README_PATH):
             print("Creating an empty README.md as fallback.")
             with open(LOCAL_README_PATH, "w", encoding="utf-8") as file:
                 file.write("# README\n\nThis README was created automatically.\n")
+        return os.path.exists(LOCAL_README_PATH)
 
 def get_star_count(repo_url):
     match = re.match(r'https://github.com/([^/]+)/([^/]+)', repo_url)
@@ -56,9 +58,8 @@ def update_readme_with_stars(readme_content, repo_urls):
     return '\n'.join(updated_lines)
 
 def main():
-    fetch_latest_readme()
-    if not os.path.exists(LOCAL_README_PATH):
-        print("README.md file still missing after fetch/create attempts.")
+    if not fetch_latest_readme():
+        print("README.md could not be fetched or created. Exiting.")
         return
 
     with open(LOCAL_README_PATH, 'r', encoding='utf-8') as file:
