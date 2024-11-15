@@ -50,10 +50,9 @@ def update_readme_with_stars(readme_content, repo_urls):
         match = re.search(r'\((https://github.com/[^)]+)\)', line)
         if match:
             repo_url = match.group(1)
-            if repo_url in repo_urls:
-                star_count = get_star_count(repo_url)
-                if star_count is not None:
-                    line = re.sub(r'\(\d+ ⭐\)', f'({star_count} ⭐)', line)
+            star_count = get_star_count(repo_url)
+            if star_count is not None:
+                line = f"{line} ({star_count} ⭐)"
         updated_lines.append(line)
     return '\n'.join(updated_lines)
 
