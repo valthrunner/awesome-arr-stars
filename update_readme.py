@@ -72,55 +72,39 @@ def find_github_from_website(url):
     except requests.exceptions.RequestException as e:
         print(f"Error fetching the website {url}: {e}")
     return None
-def update_readme_with_stars(readme_content, repo_urls):
-    lines = readme_content.splitlines()
 
+def update_readme_with_stars(readme_content):
+    lines = readme_content.splitlines()
     for i, line in enumerate(lines):
         if line.startswith('# Awesome *Arr'):
             lines[i] = '# Awesome *Arr with ⭐s [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)'
             break
-
     updated_lines = []
     for line in lines:
         updated_line = line
-        for repo_url in repo_urls:
+        match = re.search(r'- \[(.*?)\]\((.*?)\)(.*)', line)
+        if match:
+            link_text, repo_url, rest = match.groups()
             if "github.com" not in repo_url:
                 github_url = find_github_from_website(repo_url)
                 if github_url:
                     print(f"Found GitHub repository: {github_url} for {repo_url}")
                     repo_url = github_url
-            
-            match = re.search(r'- \[(.*?)\]\(' + re.escape(repo_url) + r'\)(?: \(\d+ ⭐\))?(?: - .*)?$', line)
-            if match:
-                link_text = match.group(1)
-                star_count = get_star_count(repo_url)
-                if star_count is not None:
-                    description_match = re.search(r' - (.*)$', line)
-                    description = f" - {description_match.group(1)}" if description_match else ""
-                    updated_line = f"- [{link_text}]({repo_url}) {format_star_count(star_count)}{description}"
-                    break
+            star_count = get_star_count(repo_url)
+            if star_count is not None:
+                updated_line = f"- [{link_text}]({repo_url}) {format_star_count(star_count)}{rest}"
         updated_lines.append(updated_line)
-
     return GITHUB_ACTIONS_BADGE + '\n'.join(updated_lines)
 
 def main():
     if not fetch_latest_readme():
         print("README.md could not be fetched or created. Exiting.")
         return
-
     with open(LOCAL_README_PATH, 'r', encoding='utf-8') as file:
         readme_content = file.read()
-
-    repo_urls = re.findall(r'https://github.com/[^)]+', readme_content)
-    print(f"Found {len(repo_urls)} GitHub links.")
-    repo_urls = re.findall(r'https://[^)]+', readme_content)
-    print(f"Found {len(repo_urls)} links.")
-
-    updated_readme = update_readme_with_stars(readme_content, repo_urls)
-
+    updated_readme = update_readme_with_stars(readme_content)
     with open(LOCAL_README_PATH, 'w', encoding='utf-8') as file:
         file.write(updated_readme)
-
     print("README.md has been updated with star counts.")
 
 if __name__ == '__main__':
