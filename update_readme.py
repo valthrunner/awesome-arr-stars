@@ -9,6 +9,8 @@ ORIGINAL_REPO_README_URL = "https://raw.githubusercontent.com/Ravencentric/aweso
 LOCAL_README_PATH = "README.md"
 GITHUB_ACTIONS_BADGE = "[![Stars Update Action](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml/badge.svg)](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml)\n\n"
 
+BADGE_PATTERN = re.escape(GITHUB_ACTIONS_BADGE.strip())
+
 def fetch_latest_readme():
     print("Fetching the latest README from the original repository...")
     try:
@@ -122,8 +124,15 @@ def update_readme_with_stars(readme_content, repo_urls):
                     processed_repos.add(repo_url)
                     break
         updated_lines.append(updated_line)
+    # Check if badge is already present
+    if not re.search(BADGE_PATTERN, '\n'.join(updated_lines)):
+        print("Adding GitHub Actions badge to README.")
+        updated_readme = GITHUB_ACTIONS_BADGE + '\n'.join(updated_lines)
+    else:
+        print("GitHub Actions badge already present. Skipping addition.")
+        updated_readme = '\n'.join(updated_lines)
     print("Finished updating star counts in README.")
-    return GITHUB_ACTIONS_BADGE + '\n'.join(updated_lines)
+    return updated_readme
 
 def main():
     print("Starting README update process...")
@@ -132,8 +141,11 @@ def main():
         return
     with open(LOCAL_README_PATH, 'r', encoding='utf-8') as file:
         readme_content = file.read()
-    repo_urls = re.findall(r'https://[^\s)]+', readme_content)
-    print(f"Found {len(repo_urls)} URLs in the README.")
+    repo_urls = set(re.findall(r'https://[^\s)]+', readme_content))
+    # Exclude badge URLs
+    badge_urls = set(re.findall(r'https://[^\s)]+', GITHUB_ACTIONS_BADGE))
+    repo_urls -= badge_urls
+    print(f"Found {len(repo_urls)} unique URLs in the README after excluding badge URLs.")
     updated_readme = update_readme_with_stars(readme_content, repo_urls)
     with open(LOCAL_README_PATH, 'w', encoding='utf-8') as file:
         file.write(updated_readme)
