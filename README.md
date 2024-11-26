@@ -96,7 +96,7 @@
 - [Prefetcharr](https://github.com/p-hueber/prefetcharr) 49 ⭐ - Let Sonarr fetch the next season of a show you are watching on Jellyfin/Emby/Plex. 
 - [Profilarr](https://github.com/santiagosayshey/Profilarr) **218** 🌟 - Import, Export & Sync Profiles & Custom Formats via Radarr / Sonarr API.
 - [Prunerr](https://github.com/rpatterson/prunerr) 30 ⭐ - Perma-seed Servarr media libraries.
-- [Radarr-striptracks](https://github.com/linuxserver/docker-mods/tree/radarr-striptracks) - A Docker Mod for the LinuxServer.io Radarr/Sonarr v3 Docker container that adds a script to automatically strip out unwanted audio and subtitle streams, keeping only the desired languages.
+- [Radarr-striptracks](https://github.com/linuxserver/docker-mods/tree/radarr-striptracks) **1,114** 💫 - A Docker Mod for the LinuxServer.io Radarr/Sonarr v3 Docker container that adds a script to automatically strip out unwanted audio and subtitle streams, keeping only the desired languages.
 - [Rclone](https://rclone.org/) **47,373** 💫 - Rclone is a command-line program to manage files on cloud storage.
 - [Recyclarr](https://github.com/recyclarr/recyclarr) **1,159** 💫 - Automatically sync TRaSH guides to your Sonarr and Radarr instances.
 - [Reiverr](https://github.com/aleksilassila/reiverr) **1,455** 💫 - Reiverr is a clean combined interface for Jellyfin, TMDB, Radarr and Sonarr, as well as a replacement to Overseerr.
