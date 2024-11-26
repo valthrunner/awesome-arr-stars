@@ -9,27 +9,6 @@ ORIGINAL_REPO_README_URL = "https://raw.githubusercontent.com/Ravencentric/aweso
 LOCAL_README_PATH = "README.md"
 GITHUB_ACTIONS_BADGE = "[![Stars Update Action](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml/badge.svg)](https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml)\n\n"
 
-# URLs to exclude from processing
-EXCLUDED_URLS = {
-    "https://github.com/valthrunner/awesome-arr-stars/actions/workflows/update_readme.yml/badge.svg",
-    "https://awesome.re/badge.svg",
-}
-
-# Patterns for excluding certain URLs
-EXCLUDED_PATTERNS = [
-    r'/actions/workflows/',  # Exclude GitHub Actions URLs
-    r'\.(svg|png|jpg|jpeg|gif)$',  # Exclude image URLs
-    r'https://github\.com/features/copilot',  # Specific non-repo GitHub URL
-]
-
-def is_excluded_url(url):
-    if url in EXCLUDED_URLS:
-        return True
-    for pattern in EXCLUDED_PATTERNS:
-        if re.search(pattern, url):
-            return True
-    return False
-
 def fetch_latest_readme():
     print("Fetching the latest README from the original repository...")
     try:
@@ -91,8 +70,6 @@ def find_github_from_website(url):
         github_links = []
         for a in soup.find_all('a', href=True):
             href = a['href']
-            if is_excluded_url(href):
-                continue
             repo_match = re.match(r'https://github\.com/([^/]+)/([^/]+?)/?$', href)
             if repo_match:
                 github_links.append(href.rstrip('/'))
@@ -106,24 +83,20 @@ def find_github_from_website(url):
         print(f"Error accessing website {url}: {e}")
         return None
 
-def remove_existing_badges(lines):
-    return [line for line in lines if not re.match(r'\[!\[Stars Update Action\].*', line)]
-
 def update_readme_with_stars(readme_content, repo_urls):
     print("Updating README with star counts...")
     lines = readme_content.splitlines()
-    
-    # Remove existing badge lines to prevent duplication
-    lines = remove_existing_badges(lines)
-    
-    # Insert the badge at the top
-    updated_lines = [GITHUB_ACTIONS_BADGE.strip()] + lines
-    
+    for i, line in enumerate(lines):
+        if line.startswith('# Awesome *Arr'):
+            print("Updating the main header of the README.")
+            lines[i] = '# Awesome *Arr with ⭐s [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)'
+            break
+    updated_lines = []
     processed_repos = set()
-    for line_number, line in enumerate(updated_lines, start=1):
+    for line_number, line in enumerate(lines, start=1):
         updated_line = line
         for repo_url in repo_urls:
-            if repo_url in processed_repos or is_excluded_url(repo_url):
+            if repo_url in processed_repos:
                 continue
             original_repo_url = repo_url
             if "github.com" not in repo_url:
@@ -148,9 +121,9 @@ def update_readme_with_stars(readme_content, repo_urls):
                     print(f"Updated line {line_number}: {updated_line}")
                     processed_repos.add(repo_url)
                     break
-        updated_lines[line_number -1] = updated_line
+        updated_lines.append(updated_line)
     print("Finished updating star counts in README.")
-    return '\n'.join(updated_lines)
+    return GITHUB_ACTIONS_BADGE + '\n'.join(updated_lines)
 
 def main():
     print("Starting README update process...")
@@ -159,27 +132,11 @@ def main():
         return
     with open(LOCAL_README_PATH, 'r', encoding='utf-8') as file:
         readme_content = file.read()
-    
-    # Extract GitHub repository URLs directly
-    repo_urls = re.findall(r'https://github\.com/[^/\s)]+/[^/\s)]+/?', readme_content)
-    
-    # Extract non-GitHub URLs excluding image URLs and already included GitHub URLs
-    non_github_urls = re.findall(r'(?<!github\.com)https://[^\s)]+(?<!\.(?:svg|png|jpg|jpeg|gif))', readme_content)
-    
-    print(f"Found {len(repo_urls)} GitHub repository URLs in the README.")
-    print(f"Found {len(non_github_urls)} non-GitHub URLs in the README.")
-    
-    # Combine both lists, remove duplicates, and exclude specific URLs
-    combined_urls = list(set(repo_urls + non_github_urls))
-    combined_urls = [url for url in combined_urls if not is_excluded_url(url)]
-    
-    print(f"Total unique URLs to process after exclusions: {len(combined_urls)}")
-    
-    updated_readme = update_readme_with_stars(readme_content, combined_urls)
-    
+    repo_urls = re.findall(r'https://[^\s)]+', readme_content)
+    print(f"Found {len(repo_urls)} URLs in the README.")
+    updated_readme = update_readme_with_stars(readme_content, repo_urls)
     with open(LOCAL_README_PATH, 'w', encoding='utf-8') as file:
         file.write(updated_readme)
-    
     print("README has been updated successfully.")
 
 if __name__ == '__main__':
