@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x'
           
       - name: Install Dependencies
-        run: pip install requests
+        run: pip install requests beautifulsoup4
           
       - name: Update README
         env:
