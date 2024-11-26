@@ -2,6 +2,7 @@ import re
 import requests
 import os
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
 GITHUB_TOKEN = os.getenv("GH_TOKEN")
 HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
@@ -37,6 +38,7 @@ def format_star_count(count):
         return f"{formatted_count} ⭐"
 
 def get_star_count(repo_url):
+    repo_url = clean_github_url(repo_url)
     match = re.match(r'https://github.com/([^/]+)/([^/]+)', repo_url)
     if not match:
         print(f"Invalid URL format: {repo_url}")
@@ -55,20 +57,36 @@ def get_star_count(repo_url):
         print(f"Error fetching star count for {repo_url}: {e}")
         return None
 
+def clean_github_url(url):
+    match = re.match(r'(https://github\.com/[^/]+/[^/]+)', url)
+    if match:
+        return match.group(1)
+    else:
+        return url
+
 def find_github_from_website(url):
     try:
         response = requests.get(url, stream=True, timeout=10)
         response.raise_for_status()
-        content = b""
-        for chunk in response.iter_content(chunk_size=1024):
-            content += chunk
-            if b"github.com" in content:
-                break
+        content = response.content
         soup = BeautifulSoup(content, 'html.parser')
         github_links = [a['href'] for a in soup.find_all('a', href=True) if 'github.com' in a['href']]
         if github_links:
+            domain = urlparse(url).netloc.lower()
+            for link in github_links:
+                clean_link = clean_github_url(link)
+                owner_repo = re.match(r'https://github.com/([^/]+)/([^/]+)', clean_link)
+                if owner_repo:
+                    owner, repo = owner_repo.groups()
+                    if domain in owner.lower() or domain in repo.lower():
+                        print(f"Found matching GitHub link: {clean_link} for {url}")
+                        return clean_link
+            for link in github_links:
+                if '/github.com/' in link:
+                    clean_link = clean_github_url(link)
+                    return clean_link
             print(f"Found GitHub link(s) on {url}: {github_links}")
-            return github_links[0]
+            return clean_github_url(github_links[0])
     except requests.exceptions.RequestException as e:
         print(f"Error fetching the website {url}: {e}")
     return None
@@ -84,15 +102,16 @@ def update_readme_with_stars(readme_content):
         updated_line = line
         match = re.search(r'- \[(.*?)\]\((.*?)\)(.*)', line)
         if match:
-            link_text, repo_url, rest = match.groups()
-            if "github.com" not in repo_url:
-                github_url = find_github_from_website(repo_url)
+            link_text, link_url, rest = match.groups()
+            star_count = None
+            if "github.com" in link_url:
+                star_count = get_star_count(link_url)
+            else:
+                github_url = find_github_from_website(link_url)
                 if github_url:
-                    print(f"Found GitHub repository: {github_url} for {repo_url}")
-                    repo_url = github_url
-            star_count = get_star_count(repo_url)
+                    star_count = get_star_count(github_url)
             if star_count is not None:
-                updated_line = f"- [{link_text}]({repo_url}) {format_star_count(star_count)}{rest}"
+                updated_line = f"- [{link_text}]({link_url}) {format_star_count(star_count)}{rest}"
         updated_lines.append(updated_line)
     return GITHUB_ACTIONS_BADGE + '\n'.join(updated_lines)
 
