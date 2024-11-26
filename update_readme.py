@@ -75,22 +75,26 @@ def find_github_from_website(url):
 
 def update_readme_with_stars(readme_content, repo_urls):
     lines = readme_content.splitlines()
-    
+    github_cache = {}
+
     for i, line in enumerate(lines):
         if line.startswith('# Awesome *Arr'):
             lines[i] = '# Awesome *Arr with ⭐s [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)'
             break
-    
+
     updated_lines = []
+
     for line in lines:
         updated_line = line
         for repo_url in repo_urls:
-            if "github.com" not in repo_url:
+            if repo_url in github_cache:
+                repo_url = github_cache[repo_url]
+            elif "github.com" not in repo_url:
                 github_url = find_github_from_website(repo_url)
                 if github_url:
-                    print(f"Found GitHub repository: {github_url} for {repo_url}")
+                    github_cache[repo_url] = github_url
                     repo_url = github_url
-            
+
             match = re.search(r'- \[(.*?)\]\(' + re.escape(repo_url) + r'\)(?: \(\d+ ⭐\))?(?: - .*)?$', line)
             if match:
                 link_text = match.group(1)
@@ -100,8 +104,9 @@ def update_readme_with_stars(readme_content, repo_urls):
                     description = f" - {description_match.group(1)}" if description_match else ""
                     updated_line = f"- [{link_text}]({repo_url}) {format_star_count(star_count)}{description}"
                     break
+
         updated_lines.append(updated_line)
-    
+
     return GITHUB_ACTIONS_BADGE + '\n'.join(updated_lines)
 
 def main():
