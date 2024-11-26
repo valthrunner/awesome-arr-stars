@@ -88,18 +88,24 @@ def update_readme_with_stars(readme_content, repo_urls):
         updated_line = line
         for repo_url in repo_urls:
             if repo_url in github_cache:
+                print(f"Using cached GitHub URL for {repo_url}: {github_cache[repo_url]}")
                 repo_url = github_cache[repo_url]
             elif "github.com" not in repo_url:
+                print(f"Resolving GitHub URL for non-GitHub link: {repo_url}")
                 github_url = find_github_from_website(repo_url)
                 if github_url:
+                    print(f"Resolved {repo_url} to {github_url}")
                     github_cache[repo_url] = github_url
                     repo_url = github_url
+                else:
+                    print(f"Could not resolve GitHub URL for {repo_url}")
 
             match = re.search(r'- \[(.*?)\]\(' + re.escape(repo_url) + r'\)(?: \(\d+ ⭐\))?(?: - .*)?$', line)
             if match:
                 link_text = match.group(1)
                 star_count = get_star_count(repo_url)
                 if star_count is not None:
+                    print(f"Updated star count for {repo_url}: {star_count}")
                     description_match = re.search(r' - (.*)$', line)
                     description = f" - {description_match.group(1)}" if description_match else ""
                     updated_line = f"- [{link_text}]({repo_url}) {format_star_count(star_count)}{description}"
