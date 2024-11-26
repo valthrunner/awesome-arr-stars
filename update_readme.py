@@ -1,6 +1,7 @@
 import re
 import requests
 import os
+from bs4 import BeautifulSoup
 
 GITHUB_TOKEN = os.getenv("GH_TOKEN")
 HEADERS = {"Authorization": f"Bearer {GITHUB_TOKEN}"}
@@ -54,6 +55,24 @@ def get_star_count(repo_url):
         print(f"Error fetching star count for {repo_url}: {e}")
         return None
 
+def find_github_from_website(url):
+    try:
+        response = requests.get(url, stream=True, timeout=10)
+        response.raise_for_status()
+        content = b""
+        for chunk in response.iter_content(chunk_size=1024):
+            content += chunk
+            if b"github.com" in content:
+                break
+        soup = BeautifulSoup(content, 'html.parser')
+        github_links = [a['href'] for a in soup.find_all('a', href=True) if 'github.com' in a['href']]
+        if github_links:
+            print(f"Found GitHub link(s) on {url}: {github_links}")
+            return github_links[0]
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching the website {url}: {e}")
+    return None
+
 def update_readme_with_stars(readme_content, repo_urls):
     lines = readme_content.splitlines()
     
@@ -66,6 +85,12 @@ def update_readme_with_stars(readme_content, repo_urls):
     for line in lines:
         updated_line = line
         for repo_url in repo_urls:
+            if "github.com" not in repo_url:
+                github_url = find_github_from_website(repo_url)
+                if github_url:
+                    print(f"Found GitHub repository: {github_url} for {repo_url}")
+                    repo_url = github_url
+            
             match = re.search(r'- \[(.*?)\]\(' + re.escape(repo_url) + r'\)(?: \(\d+ ⭐\))?(?: - .*)?$', line)
             if match:
                 link_text = match.group(1)
@@ -87,8 +112,8 @@ def main():
     with open(LOCAL_README_PATH, 'r', encoding='utf-8') as file:
         readme_content = file.read()
     
-    repo_urls = re.findall(r'https://github.com/[^)]+', readme_content)
-    print(f"Found {len(repo_urls)} GitHub links.")
+    repo_urls = re.findall(r'https://[^)]+', readme_content)
+    print(f"Found {len(repo_urls)} links.")
     
     updated_readme = update_readme_with_stars(readme_content, repo_urls)
     
