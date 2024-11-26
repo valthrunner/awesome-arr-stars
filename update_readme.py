@@ -39,17 +39,17 @@ def format_star_count(count):
 
 def clean_github_url(url):
     url = url.rstrip('/')
-    match = re.match(r'https://github\.com/([^/]+)/([^/]+)$', url)
+    match = re.match(r'https://github\.com/([^/]+)/([^/]+)', url)
     if match:
         return f"https://github.com/{match.group(1)}/{match.group(2)}"
     else:
         return None
 
 def get_star_count(repo_url):
-    repo_url = clean_github_url(repo_url)
-    if not repo_url:
+    clean_url = clean_github_url(repo_url)
+    if not clean_url:
         return None
-    owner_repo_match = re.match(r'https://github.com/([^/]+)/([^/]+)$', repo_url)
+    owner_repo_match = re.match(r'https://github\.com/([^/]+)/([^/]+)', clean_url)
     if not owner_repo_match:
         return None
     owner, repo = owner_repo_match.groups()
@@ -80,7 +80,7 @@ def find_github_from_website(url, link_text=None):
         if github_links:
             domain = urlparse(url).netloc.lower()
             for link in github_links:
-                owner_repo = re.match(r'https://github.com/([^/]+)/([^/]+)$', link)
+                owner_repo = re.match(r'https://github\.com/([^/]+)/([^/]+)', link)
                 if owner_repo:
                     owner, repo = owner_repo.groups()
                     if domain in owner.lower() or domain in repo.lower():
