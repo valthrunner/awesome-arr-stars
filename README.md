@@ -87,7 +87,7 @@
 - [MediathekArr](https://github.com/PCJones/MediathekArr/) 49 ⭐ -  Integrate ARD&ZDF Mediathek in Prowlarr, Sonarr, and Radarr (German free public TV stations).
 - [Midarr](https://github.com/midarrlabs/midarr-server) **1,244** 💫 - Midarr, the minimal lightweight media server.
 - [Monitorr](https://github.com/Monitorr/Monitorr) **648** 🌟 - Monitorr is a self-hosted PHP web app that monitors the status of local and remote network services, websites, and applications.
-- [Notifiarr](https://notifiarr.com/) **2,087** 💫 - Discord notification system.
+- [Notifiarr](https://notifiarr.com/) **539** 🌟 - Discord notification system.
 - [Ombi](https://github.com/Ombi-app/Ombi) **3,749** 💫 - Ombi is a self-hosted web application that automatically gives your shared Plex or Emby users the ability to request content by themselves! Ombi can be linked to multiple TV Show and Movie DVR tools to create a seamless end-to-end experience for your users.
 - [Omegabrr](https://github.com/autobrr/omegabrr) 150 ⭐ - Transform monitored shows and movies from the arrs into autobrr filters.
 - [Overseerr](https://overseerr.dev/) **3,925** 💫 - Request management and media discovery tool for the Plex ecosystem.
@@ -96,8 +96,8 @@
 - [Prefetcharr](https://github.com/p-hueber/prefetcharr) 49 ⭐ - Let Sonarr fetch the next season of a show you are watching on Jellyfin/Emby/Plex. 
 - [Profilarr](https://github.com/santiagosayshey/Profilarr) **218** 🌟 - Import, Export & Sync Profiles & Custom Formats via Radarr / Sonarr API.
 - [Prunerr](https://github.com/rpatterson/prunerr) 30 ⭐ - Perma-seed Servarr media libraries.
-- [Radarr-striptracks](https://github.com/linuxserver/docker-mods/tree/radarr-striptracks) **1,114** 💫 - A Docker Mod for the LinuxServer.io Radarr/Sonarr v3 Docker container that adds a script to automatically strip out unwanted audio and subtitle streams, keeping only the desired languages.
-- [Rclone](https://rclone.org/) **23,043** 💫 - Rclone is a command-line program to manage files on cloud storage.
+- [Radarr-striptracks](https://github.com/linuxserver/docker-mods/tree/radarr-striptracks) - A Docker Mod for the LinuxServer.io Radarr/Sonarr v3 Docker container that adds a script to automatically strip out unwanted audio and subtitle streams, keeping only the desired languages.
+- [Rclone](https://rclone.org/) **47,373** 💫 - Rclone is a command-line program to manage files on cloud storage.
 - [Recyclarr](https://github.com/recyclarr/recyclarr) **1,159** 💫 - Automatically sync TRaSH guides to your Sonarr and Radarr instances.
 - [Reiverr](https://github.com/aleksilassila/reiverr) **1,455** 💫 - Reiverr is a clean combined interface for Jellyfin, TMDB, Radarr and Sonarr, as well as a replacement to Overseerr.
 - [se1exin/Cleanarr](https://github.com/se1exin/Cleanarr) **216** 🌟 - A simple UI to help find and delete duplicate and sample files from your Plex server.
