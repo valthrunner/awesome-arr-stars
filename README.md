@@ -2,7 +2,7 @@
 
 # Awesome *Arr with ⭐s [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
-> Lidarr, Prowlarr, Radarr, Readarr, Sonarr, and Whisparr are collectively referred to as "*arr" or "*arrs". They are designed to automatically grab, sort, organize, and monitor your Music, Movie, E-Book, or TV Show collections for Lidarr, Radarr, Readarr, Sonarr, and Whisparr; and to manage your indexers and keep them in sync with the aforementioned apps for Prowlarr. This list aims to list all *arrs and things related to them
+> Lidarr, Prowlarr, Radarr, Sonarr, and Whisparr are collectively referred to as "*arr" or "*arrs". They are designed to automatically grab, sort, organize, and monitor your Music, Movie, E-Book, or TV Show collections for Lidarr, Radarr, Sonarr, and Whisparr; and to manage your indexers and keep them in sync with the aforementioned apps for Prowlarr. This list aims to list all *arrs and things related to them
 
 ## Contents
 
@@ -20,21 +20,20 @@
 
 > These are collection managers for Usenet and BitTorrent users. They can monitor multiple RSS feeds for new content and will grab, sort, and rename them. They can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
-- [Lidarr](https://lidarr.audio/) **4,259** 💫 - Lidarr is a music collection manager.
-- [Radarr](https://radarr.video/) **11,778** 💫 - Radarr is a movie collection manager.
-- [Readarr](https://readarr.com/) **3,313** 💫 - Readarr is an ebook collection manager.
-- [Sonarr](https://sonarr.tv/) **12,036** 💫 - Smart PVR for newsgroup and bittorrent users.
+- [Lidarr](https://lidarr.audio/) **4,261** 💫 - Lidarr is a music collection manager.
+- [Radarr](https://radarr.video/) **11,781** 💫 - Radarr is a movie collection manager.
+- [Sonarr](https://sonarr.tv/) **12,040** 💫 - Smart PVR for newsgroup and bittorrent users.
 - [Whisparr](https://whisparr.com/) **724** 🌟 - Whisparr is an adult movie collection manager.
 
 ## Indexer Managers
 
-- [Prowlarr](https://github.com/prowlarr/prowlarr) **4,980** 💫 - Prowlarr is an indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports management of both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Lidarr, Mylar3, Radarr, Readarr, and Sonarr offering complete management of your indexers with no per app Indexer setup required.
-- [Jackett](https://github.com/Jackett/Jackett) **13,605** 💫 - API Support for your favorite torrent trackers. An alternative to Prowlarr.
+- [Prowlarr](https://github.com/prowlarr/prowlarr) **4,985** 💫 - Prowlarr is an indexer manager/proxy built on the popular arr .net/reactjs base stack to integrate with your various PVR apps. Prowlarr supports management of both Torrent Trackers and Usenet Indexers. It integrates seamlessly with Lidarr, Mylar3, Radarr, and Sonarr offering complete management of your indexers with no per app Indexer setup required.
+- [Jackett](https://github.com/Jackett/Jackett) **13,606** 💫 - API Support for your favorite torrent trackers. An alternative to Prowlarr.
 
 ## Resources
 
-- [Servarr](https://wiki.servarr.com/) **438** 🌟 -  The consolidated wiki for Lidarr, Prowlarr, Radarr, Readarr, and Sonarr.
-- [TRaSH-Guides](https://trash-guides.info/) **2,314** 💫 - Guides mainly for Sonarr/Radarr/Bazarr and everything related to it.
+- [Servarr](https://wiki.servarr.com/) **439** 🌟 -  The consolidated wiki for Lidarr, Prowlarr, Radarr, and Sonarr.
+- [TRaSH-Guides](https://trash-guides.info/) **2,315** 💫 - Guides mainly for Sonarr/Radarr/Bazarr and everything related to it.
 
 ## *arrs with Additional Functionality
 
@@ -48,45 +47,46 @@
 > These work similarly to an *arr and serve as an alternative to them.
 
 - [Flexget](https://github.com/Flexget/Flexget) **1,825** 💫 - FlexGet is a multipurpose automation tool for all of your media. Support for torrents, nzbs, podcasts, comics, TV, movies, RSS, HTML, CSV, and more.
-- [Kapowarr](https://github.com/Casvt/Kapowarr) **626** 🌟 - Kapowarr is a software to build and manage a comic book library.
+- [Kapowarr](https://github.com/Casvt/Kapowarr) **628** 🌟 - Kapowarr is a software to build and manage a comic book library.
 - [Medusa](https://pymedusa.com/) - Medusa is an automatic Video Library Manager for TV Shows. It watches for new episodes of your favorite shows, and when they are posted it does its magic: automatic torrent/nzb searching, downloading, and processing at the qualities you want.
-- [Mylar3](https://github.com/mylar3/mylar3) **1,229** 💫 - The python3 version of the automated Comic Book downloader (cbr/cbz) for use with various download clients.
-- [SickGear](https://github.com/SickGear/SickGear) **731** 🌟 - SickGear has proven the most reliable stable TV fork of the great Sick-Beard to fully automate TV enjoyment with innovation.
+- [Mylar3](https://github.com/mylar3/mylar3) **1,232** 💫 - The python3 version of the automated Comic Book downloader (cbr/cbz) for use with various download clients.
+- [SickGear](https://github.com/SickGear/SickGear) **732** 🌟 - SickGear has proven the most reliable stable TV fork of the great Sick-Beard to fully automate TV enjoyment with innovation.
 
 ## Complimenting Apps
 
-- [Arr-scripts](https://github.com/RandomNinjaAtk/arr-scripts) **1,089** 💫 - Extended Container Scripts. Designed to be easily implemented/added to Linuxserver.io containers.
-- [Autobrr](https://autobrr.com/) **1,871** 💫 - The modern autodl-irssi replacement.
-- [Autopulse](https://github.com/dan-online/autopulse) **255** 🌟 - An automated lightweight service that updates media servers like Plex and Jellyfin based on notifications from media organizers like Sonarr and Radarr.
+- [Arr-scripts](https://github.com/RandomNinjaAtk/arr-scripts) **1,091** 💫 - Extended Container Scripts. Designed to be easily implemented/added to Linuxserver.io containers.
+- [Autobrr](https://autobrr.com/) **1,873** 💫 - The modern autodl-irssi replacement.
+- [Autopulse](https://github.com/dan-online/autopulse) **257** 🌟 - An automated lightweight service that updates media servers like Plex and Jellyfin based on notifications from media organizers like Sonarr and Radarr.
 - [Autoscan](https://github.com/Cloudbox/autoscan) **633** 🌟 - Autoscan replaces the default Plex and Emby behaviour for picking up changes on the file system.
 - [Bazarr](https://github.com/morpheus65535/bazarr) **3,306** 💫 - Bazarr is a companion application to Sonarr and Radarr. It manages and downloads subtitles based on your requirements. You define your preferences by TV show or movie and Bazarr takes care of everything for you.
-- [Buildarr](https://github.com/buildarr/buildarr) **251** 🌟 - A solution to automating deployment and configuration of your *arr stack.
+- [Buildarr](https://github.com/buildarr/buildarr) **252** 🌟 - A solution to automating deployment and configuration of your *arr stack.
 - [Byparr](https://github.com/ThePhaseless/Byparr/) **544** 🌟 - An alternative to FlareSolverr as a drop-in replacement, built with seleniumbase and FastAPI.
 - [Calendarr](https://github.com/jordanlambrecht/calendarr) 66 ⭐ - A notification system that sends scheduled Sonarr/Radarr calendar updates to Discord and Slack.
 - [Checkrr](https://github.com/aetaric/checkrr) **377** 🌟 - Checkrr Scans your library files for corrupt media and replace the files via sonarr and radarr.
 - [Cleanarr (hrenard)](https://github.com/hrenard/cleanarr/) 36 ⭐ - A small utility tasked to automatically clean radarr and sonarr files over time.
 - [Cleanarr (se1exin)](https://github.com/se1exin/Cleanarr) **244** 🌟 - A simple UI to help find and delete duplicate and sample files from your Plex server.
-- [Cloud Seeder](https://ipv6.rs/cloudseeder) 156 ⭐ - 1 click installer and updater for Prowlarr, Lidarr, Radarr, Readarr, Sonarr and Whisparr. Also links and connects qBittorrent.
-- [Collectarr](https://github.com/RiffSphere/Collectarr) 47 ⭐ - A Python script for checking your Radarr database and setting up collection lists. Also supports "smart" actor lists based on TMDB.
+- [Cloud Seeder](https://ipv6.rs/cloudseeder) 156 ⭐ - 1 click installer and updater for Prowlarr, Lidarr, Radarr, Sonarr and Whisparr. Also links and connects qBittorrent.
+- [Collectarr](https://github.com/RiffSphere/Collectarr) 48 ⭐ - A Python script for checking your Radarr database and setting up collection lists. Also supports "smart" actor lists based on TMDB.
 - [Crossarr](https://github.com/TMD20/crossarr) 25 ⭐ - Cross Seed via Arr Programs.
 - [Dasharr](https://github.com/FrenchGithubUser/Dasharr) 170 ⭐ - Dashboard of torrent indexers usage, profile stats evolution over time.
-- [Decluttarr](https://github.com/ManiMatter/decluttarr) **549** 🌟 - Watches radarr, sonarr, lidarr, readarr and whisparr download queues and removes downloads if they become stalled or no longer needed.
+- [Decluttarr](https://github.com/ManiMatter/decluttarr) **549** 🌟 - Watches radarr, sonarr, lidarr and whisparr download queues and removes downloads if they become stalled or no longer needed.
 - [Deleterr](https://github.com/rfsbraz/deleterr) **208** 🌟 - Automates deleting inactive and stale media from Plex/Sonarr/Radarr.
 - [Deployarr](https://github.com/anandslab/deployarr) **536** 🌟 - Deployarr automates Homelab setup using Docker and Docker Compose.
 - [Elsewherr](https://github.com/Adman1020/Elsewherr) 92 ⭐ - See disclaimer on page. See if your movies from Radarr are available on a streaming service, and add a tag against the movie if it is.
 - [Excludarr](https://github.com/haijeploeg/excludarr) **216** 🌟 - Excludarr is a CLI that interacts with Radarr and Sonarr instances. It completely manages you library in Sonarr and Radarr to only consist out of movies and series that are not present on any of the configured streaming providers.
-- [Exportarr](https://github.com/onedr0p/exportarr) **707** 🌟 - This will export metrics gathered from Sonarr, Radarr, Lidarr, or Prowlarr.
+- [Exportarr](https://github.com/onedr0p/exportarr) **708** 🌟 - This will export metrics gathered from Sonarr, Radarr, Lidarr, or Prowlarr.
 - [Ezarr](https://github.com/Luctia/ezarr) **890** 🌟 - Ezarr aims to make it as easy as possible to setup an entire Servarr/Jackett/BitTorrent/PleX/Jellyfin mediacenter stack using Docker.
 - [Nixarr](https://github.com/rasmus-kirk/nixarr) **244** 🌟 - Nixarr is a Nixos module that helps setup and manage a media server stack natively in Nixos. Supports a lot of *Arrs, Jellyfin, Plex, Audiobookshelf, has both Usenet and Torrent modules and has built-in VPN-support.
-- [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) **10,071** 💫 - Proxy server to bypass Cloudflare protection.
+- [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) **10,079** 💫 - Proxy server to bypass Cloudflare protection.
 - [Flemmarr](https://github.com/Flemmarr/Flemmarr) **310** 🌟 - Flemmarr makes it easy to automate configuration for your -arr apps.
 - [Gclone](https://github.com/l3v11/gclone) 153 ⭐ - A rclone mod with auto SA rotation.
-- [Huntarr](https://github.com/plexguide/Huntarr.io) **1,926** 💫 - A specialized utility that automates discovering missing and upgrading your media collection!
-- [Janitorr](https://github.com/Schaka/janitorr) **513** 🌟 - Cleans your Radarr, Sonarr, Jellyseerr and Jellyfin before you run out of space.
-- [Jellyseerr](https://github.com/Fallenbagel/jellyseerr) **5,611** 💫 - Open-source media request and discovery manager for Jellyfin, Plex and Emby.
+- [Huntarr](https://github.com/plexguide/Huntarr.io) **1,936** 💫 - A specialized utility that automates discovering missing and upgrading your media collection!
+- [Janitorr](https://github.com/Schaka/janitorr) **514** 🌟 - Cleans your Radarr, Sonarr, Jellyseerr and Jellyfin before you run out of space.
+- [Jellyseerr](https://github.com/Fallenbagel/jellyseerr) **5,617** 💫 - Open-source media request and discovery manager for Jellyfin, Plex and Emby.
 - [Just A Bunch Of Starr Scripts](https://github.com/angrycuban13/Just-A-Bunch-Of-Starr-Scripts) 139 ⭐ - PowerShell scripts for Starr apps.
 - [Kometa](https://github.com/Kometa-Team/Kometa) **2,856** 💫 - Kometa (formerly Plex Meta Manager) is an open source Python 3 project that has been designed to ease the creation and maintenance of metadata, collections, and playlists within a Plex Media Server.
-- [Lingarr](https://github.com/lingarr-translate/lingarr) **397** 🌟 - Lingarr integrates with Radarr and Sonarr and automates subtitle translation using various locally hosted or SaaS translation services.
+- [Labelarr](https://github.com/nullable-eth/labelarr) 15 ⭐ - Application that bridges your Plex media libraries with The Movie Database, adding relevant keywords as searchable labels or genres for custom filters in Plex.
+- [Lingarr](https://github.com/lingarr-translate/lingarr) **398** 🌟 - Lingarr integrates with Radarr and Sonarr and automates subtitle translation using various locally hosted or SaaS translation services.
 - [Listrr](https://github.com/TheUltimateC0der/Listrr) **221** 🌟 - Listrr creates lists for shows and movies based on your filters. The created lists get updated every 24 hours based on your filters, so Listrr will add all new items that match your filters, and will also remove all items that do not match your filter configuration anymore. Supports Sonarr, Radarr, Traktarr and Python-PlexLibrary.
 - [Maintainerr](https://github.com/jorenn92/Maintainerr) **1,201** 💫 - Looks and smells like Overseerr, does the opposite. Maintenance tool for the Plex ecosystem.
 - [Managarr](https://github.com/Dark-Alex-17/managarr) **463** 🌟 - A TUI and CLI to help you manage all your Servarrs.
@@ -94,46 +94,45 @@
 - [MediathekArr](https://github.com/PCJones/MediathekArr/) 174 ⭐ -  Integrate ARD&ZDF Mediathek in Prowlarr, Sonarr, and Radarr (German free public TV stations).
 - [Midarr](https://github.com/midarrlabs/midarr-server) **1,316** 💫 - Midarr, the minimal lightweight media server.
 - [Monitorr](https://github.com/Monitorr/Monitorr) **665** 🌟 - Monitorr is a self-hosted PHP web app that monitors the status of local and remote network services, websites, and applications.
-- [Notifiarr](https://notifiarr.com/) **707** 🌟 - Discord notification system.
+- [Notifiarr](https://notifiarr.com/) **708** 🌟 - Discord notification system.
 - [OCDarr](https://github.com/Vansmak/OCDarr) 114 ⭐ - Automates sending and deleting episodes or seasons to sonarr one at a time as played. 
 - [Ombi](https://github.com/Ombi-app/Ombi) **3,903** 💫 - Ombi is a self-hosted web application that automatically gives your shared Plex or Emby users the ability to request content by themselves! Ombi can be linked to multiple TV Show and Movie DVR tools to create a seamless end-to-end experience for your users.
-- [Overseerr](https://overseerr.dev/) **4,590** 💫 - Request management and media discovery tool for the Plex ecosystem.
+- [Overseerr](https://overseerr.dev/) **4,592** 💫 - Request management and media discovery tool for the Plex ecosystem.
 - [Plexist](https://github.com/Gyarbij/Plexist) 50 ⭐ - An application for recreating Spotify and Deezer playlist in Plex.
 - [Plundrio](https://github.com/elsbrock/plundrio) 30 ⭐ - A put.io download client for *arr implementing the transmission RPC interface.
-- [Posteria](https://github.com/jeremehancock/Posteria) 132 ⭐ - A sleek, modern solution for managing your movie, TV show, and collection posters.
+- [Posteria](https://github.com/jeremehancock/Posteria) 133 ⭐ - A sleek, modern solution for managing your movie, TV show, and collection posters.
 - [Posterizarr](https://github.com/fscorrupt/Posterizarr) **301** 🌟 - Automated poster maker for Plex/Jellyfin/Emby.
-- [Posterr](https://github.com/petersem/posterr) **514** 🌟 - A digital poster app for Plex, Sonarr, Radarr, and Readarr.
+- [Posterr](https://github.com/petersem/posterr) **514** 🌟 - A digital poster app for Plex, Sonarr and Radarr.
 - [Prefetcharr](https://github.com/p-hueber/prefetcharr) 126 ⭐ - Let Sonarr fetch the next season of a show you are watching on Jellyfin/Emby/Plex. 
-- [Profilarr](https://github.com/santiagosayshey/Profilarr) **891** 🌟 - Import, Export & Sync Profiles & Custom Formats via Radarr / Sonarr API.
+- [Profilarr](https://github.com/santiagosayshey/Profilarr) **893** 🌟 - Import, Export & Sync Profiles & Custom Formats via Radarr / Sonarr API.
 - [Proxarr](https://github.com/Fazzani/Proxarr) 13 ⭐ - Prevents Sonarr/Radarr from downloading media already available for your region on streaming services (e.g., Netflix, Amazon Prime Video)
 - [Prunerr](https://github.com/rpatterson/prunerr) 39 ⭐ - Perma-seed Servarr media libraries.
-- [Pulsarr](https://github.com/jamcalli/Pulsarr) **263** 🌟 - An integration tool that bridges Plex watchlists with Sonarr and Radarr, enabling real-time media monitoring and automated content acquisition all from within the Plex App itself.
+- [Pulsarr](https://github.com/jamcalli/Pulsarr) **267** 🌟 - An integration tool that bridges Plex watchlists with Sonarr and Radarr, enabling real-time media monitoring and automated content acquisition all from within the Plex App itself.
 - [Radarr-striptracks](https://github.com/linuxserver/docker-mods/tree/radarr-striptracks) **1,305** 💫 - A Docker Mod for the LinuxServer.io Radarr/Sonarr v3 Docker container that adds a script to automatically strip out unwanted audio and subtitle streams, keeping only the desired languages.
-- [Rclone](https://rclone.org/) **51,436** 💫 - Rclone is a command-line program to manage files on cloud storage.
-- [Rreading Glasses](https://github.com/blampe/rreading-glasses) **621** 🌟 - A faster and better drop-in replacement for Readarr's metadata service that also handles large authors.
-- [Recommendarr](https://github.com/fingerthief/recommendarr) **793** 🌟 - An AI driven recommendation system based on Radarr and Sonarr library information.
+- [Rclone](https://rclone.org/) **51,450** 💫 - Rclone is a command-line program to manage files on cloud storage.
+- [Recommendarr](https://github.com/fingerthief/recommendarr) **797** 🌟 - An AI driven recommendation system based on Radarr and Sonarr library information.
 - [Recyclarr](https://github.com/recyclarr/recyclarr) **1,516** 💫 - Automatically sync TRaSH guides to your Sonarr and Radarr instances.
-- [Reiverr](https://github.com/aleksilassila/reiverr) **1,813** 💫 - Reiverr is a clean combined interface for Jellyfin, TMDB, Radarr and Sonarr, as well as a replacement to Overseerr.
+- [Reiverr](https://github.com/aleksilassila/reiverr) **1,839** 💫 - Reiverr is a clean combined interface for Jellyfin, TMDB, Radarr and Sonarr, as well as a replacement to Overseerr.
 - [Sonarr Episode Name Checker](https://github.com/tronyx/sonarr-episode-name-checker) 38 ⭐ - Bash and Powershell scripts to check for episodes named "Episode ##" or "TBA".
-- [Soularr](https://github.com/mrusse/soularr) **503** 🌟 - A Python script that connects Lidarr with Soulseek. 
+- [Soularr](https://github.com/mrusse/soularr) **502** 🌟 - A Python script that connects Lidarr with Soulseek. 
 - [StarrScripts](https://github.com/bakerboy448/StarrScripts) 103 ⭐ - Misc scripts for starr related apps.
 - [SuggestArr](https://github.com/giuseppe99barchetta/SuggestArr) **648** 🌟 - Automatic media content recommendations and download requests based on user activity on the media server.
-- [Tdarr](https://github.com/HaveAGitGat/Tdarr) **3,553** 💫 - Tdarr - Distributed transcode automation using FFmpeg/HandBrake + Audio/Video library analytics + video health checking.
+- [Tdarr](https://github.com/HaveAGitGat/Tdarr) **3,555** 💫 - Tdarr - Distributed transcode automation using FFmpeg/HandBrake + Audio/Video library analytics + video health checking.
 - [Toolbarr](https://github.com/Notifiarr/toolbarr) 140 ⭐ - Provides a suite of utilities to fix problems with Starr applications. Toolbarr allows you to perform various actions against your Starr apps and their SQLite3 databases.
 - [Trailarr](https://github.com/nandyalu/trailarr) **221** 🌟 - A Docker application to download and manage trailers for your Radarr, and Sonarr libraries.
 - [Traktarr](https://github.com/l3uddz/traktarr) **602** 🌟 - Script to add new series & movies to Sonarr/Radarr based on Trakt lists.
 - [Transcoderr](https://github.com/drkno/transcoderr) 53 ⭐ - A transcoding pipeline designed to normalize file types into a common filetype. Dynamically configurable using plugins allowing highly customizable pipelines to be built.
-- [UmlautAdaptarr](https://github.com/PCJones/UmlautAdaptarr) 185 ⭐ - A tool to work around Sonarr, Radarr, Lidarr and Readarrs problems with foreign languages (primarily German at the moment).
-- [Unpackerr](https://github.com/davidnewhall/unpackerr) **1,187** 💫 - Extracts downloads for Radarr, Sonarr, Lidarr, and Readarr - Deletes extracted files after import.
+- [UmlautAdaptarr](https://github.com/PCJones/UmlautAdaptarr) 186 ⭐ - A tool to work around Sonarr, Radarr and Lidarr problems with foreign languages (primarily German at the moment).
+- [Unpackerr](https://github.com/davidnewhall/unpackerr) **1,187** 💫 - Extracts downloads for Radarr, Sonarr, and Lidarr - Deletes extracted files after import.
 - [Watchlistarr](https://github.com/nylonee/watchlistarr) **302** 🌟 - Automatically sync Plex Watchlists with Sonarr and Radarr.
-- [Wizarr](https://github.com/Wizarrrr/wizarr) **1,967** 💫 - Wizarr is an automatic user invitation system for Plex.
+- [Wizarr](https://github.com/Wizarrrr/wizarr) **1,985** 💫 - Wizarr is an automatic user invitation system for Plex.
 - [Wrapperr](https://github.com/aunefyren/wrapperr) **359** 🌟 - Website based application and API that collects Plex statistics using Tautulli and displays it in a nice format. Similar to the Spotify Wrapped concept.
 
 ## Bots
 
 - [Addarr](https://github.com/Waterboy1602/Addarr) **264** 🌟 - Telegram Bot for adding series/movies to Sonarr/Radarr or for changing the download speed of Transmission/Sabnzbd.
 - [Botdarr](https://github.com/shayaantx/botdarr) 173 ⭐ - Slack/Discord/Telegram/Matrix bot for accessing radarr, sonarr, and lidarr.
-- [Doplarr](https://github.com/kiranshila/Doplarr) **513** 🌟 - An *arr request bot for Discord.
+- [Doplarr](https://github.com/kiranshila/Doplarr) **514** 🌟 - An *arr request bot for Discord.
 - [Invitarr](https://github.com/Sleepingpirates/Invitarr) 104 ⭐ - Invitarr is a chatbot that invites discord users to plex.
 - [jackett2telegram](https://github.com/danimart1991/jackett2telegram) 48 ⭐ - A self-hosted Telegram Python Bot that dumps posts from Jackett RSS feeds to a Telegram chat.
 - [Membarr](https://github.com/Yoruio/Membarr) 82 ⭐ - Discord Bot to invite a user to a Plex or Jellyfin server.
@@ -144,16 +143,16 @@
 
 > These are dashboards for your *arrs and various other services on your server.
 
-- [Dashy](https://github.com/Lissy93/dashy) **21,336** 💫 - A self-hostable personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more.
+- [Dashy](https://github.com/Lissy93/dashy) **21,345** 💫 - A self-hostable personal dashboard built for you. Includes status-checking, widgets, themes, icon packs, a UI editor and tons more.
   - Note, Dashy has not received any new release in over a year. Consider alternatives if you need active development and support.
 - [Flame](https://github.com/pawelmalak/flame) **5,790** 💫 - Flame is self-hosted startpage for your server. Easily manage your apps and bookmarks with built-in editors.
 - [Heimdall](https://github.com/linuxserver/Heimdall) **8,502** 💫 - An Application dashboard and launcher.
-- [Homarr](https://github.com/homarr-labs/homarr) **1,050** 💫 - A simple, yet powerful dashboard for your server. A sleek, modern dashboard that puts all of your apps and services at your fingertips.
-- [Homepage](https://github.com/benphelps/homepage) 35 ⭐ - A highly customizable homepage (or startpage / application dashboard) with Docker and service API integration.
-- [Homer](https://github.com/bastienwirtz/homer) **10,320** 💫 - A very simple static homepage for your server with offline health check.
-- [Organizr](https://github.com/causefx/Organizr) **5,506** 💫 - HTPC/Homelab Services Organizer - Written in PHP.
+- [Homarr](https://github.com/homarr-labs/homarr) **1,052** 💫 - A simple, yet powerful dashboard for your server. A sleek, modern dashboard that puts all of your apps and services at your fingertips.
+- [Homepage](https://github.com/benphelps/homepage) 37 ⭐ - A highly customizable homepage (or startpage / application dashboard) with Docker and service API integration.
+- [Homer](https://github.com/bastienwirtz/homer) **10,323** 💫 - A very simple static homepage for your server with offline health check.
+- [Organizr](https://github.com/causefx/Organizr) **5,508** 💫 - HTPC/Homelab Services Organizer - Written in PHP.
 
 ## Mobile Apps
 
-- [Ruddarr](https://github.com/ruddarr/app) **332** 🌟 - Ruddarr is a beautifully designed, open source, iOS/iPadOS companion app for Radarr and Sonarr instances written in SwiftUI.
-- [nzb360](https://nzb360.com/) - Usenet/Torrent manager for Android. Supports SABnzbd, NZBget, Deluge, Transmission, uTorrent, qBittorrent, rTorrent/ruTorrent, Sonarr, Sick Beard, Radarr, Lidarr, Bazarr, Couchpotato, Headphones, Readarr, NEWZnab, Jackett, NZBHydra2 and Prowlarr.
+- [Ruddarr](https://github.com/ruddarr/app) **333** 🌟 - Ruddarr is a beautifully designed, open source, iOS/iPadOS companion app for Radarr and Sonarr instances written in SwiftUI.
+- [nzb360](https://nzb360.com/) - Usenet/Torrent manager for Android. Supports SABnzbd, NZBget, Deluge, Transmission, uTorrent, qBittorrent, rTorrent/ruTorrent, Sonarr, Sick Beard, Radarr, Lidarr, Bazarr, Couchpotato, Headphones, NEWZnab, Jackett, NZBHydra2 and Prowlarr.
